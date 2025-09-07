@@ -9,25 +9,29 @@
       font-family: 'Segoe UI', sans-serif;
       background-color: #1e1e2f;
       color: #fff;
+      margin: 0;
+      padding: 0;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
-      margin: 0;
     }
+
     .login-box {
       background-color: #2c2c3c;
       padding: 30px;
       border-radius: 10px;
       box-shadow: 0 0 10px #000;
       width: 300px;
+      transition: all 0.3s ease;
     }
+
     .login-box h2 {
       text-align: center;
       margin-bottom: 20px;
       color: #00ffff;
     }
+
     input {
       width: 100%;
       padding: 10px;
@@ -35,6 +39,7 @@
       border: none;
       border-radius: 5px;
     }
+
     button {
       width: 100%;
       padding: 10px;
@@ -44,29 +49,44 @@
       font-weight: bold;
       cursor: pointer;
     }
-    .message {
-      margin-top: 20px;
-      padding: 15px;
-      background-color: #333;
-      border-radius: 5px;
+
+    .message-panel {
+      display: none;
+      width: 80%;
+      max-width: 800px;
+      background-color: #2c2c3c;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #000;
+      text-align: left;
+      color: #00ff99;
+    }
+
+    .message-panel h3 {
+      margin-top: 0;
+      color: #00ffff;
     }
   </style>
 </head>
 <body>
-  <div class="login-box">
+  <div class="login-box" id="loginBox">
     <h2>Admin Portal</h2>
     <input type="text" id="username" placeholder="Username" />
     <input type="password" id="password" placeholder="Password" />
     <button onclick="login()">Login</button>
-    <div id="output" class="message"></div>
+    <div id="output" style="margin-top:10px; color:#ff4444;"></div>
+  </div>
+
+  <div class="message-panel" id="messagePanel">
+    <h3>Welcome</h3>
+    <p id="messageContent"></p>
   </div>
 
   <script>
-    // Define users and their messages
     const users = {
-      "admin000": { password: "Never eat soggy waffles46583!", message: "Hello Orson, welcome to the Admin Portal. You can view all sites and link hubs here." },
-      "editor": { password: "edit456", message: "Hello Editor! You can now manage content." },
-      "viewer": { password: "view789", message: "Welcome Viewer! You have read-only access." },
+      "admin000": { password: "Never eat soggy waffles46583!", message: "Welcome Admin1! Here's your dashboard overview with analytics, logs, and system controls." },
+      "editor": { password: "edit456", message: "Hello Editor! You can now manage articles, media, and user comments." },
+      "viewer": { password: "view789", message: "Welcome Viewer! You have read-only access to reports and summaries." },
       // Add more users here
     };
 
@@ -74,13 +94,16 @@
       const username = document.getElementById("username").value.trim();
       const password = document.getElementById("password").value.trim();
       const output = document.getElementById("output");
+      const loginBox = document.getElementById("loginBox");
+      const messagePanel = document.getElementById("messagePanel");
+      const messageContent = document.getElementById("messageContent");
 
       if (users[username] && users[username].password === password) {
-        output.innerText = users[username].message;
-        output.style.color = "#00ff99";
+        loginBox.style.display = "none";
+        messagePanel.style.display = "block";
+        messageContent.innerText = users[username].message;
       } else {
         output.innerText = "Invalid credentials. Try again.";
-        output.style.color = "#ff4444";
       }
     }
   </script>
