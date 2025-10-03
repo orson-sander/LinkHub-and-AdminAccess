@@ -97,6 +97,7 @@
 <strong>Edit Access</strong><br>sites.google.com/d/1W9BNHAp5MP7HQ26ZVjZyEa20MZ5Hb4ok/p/19UUI9K75ELYXrBMUGk6QFMBSr2PmGjuy/edit, github.com/orson-sander?tab=repositories<br><br>
 <strong>Videos</strong><br>https://drive.google.com/drive/folders/1PzKaoaK4blzlaoxnwC20gZoeYE5mDxWL?usp=drive_link, drive.google.com/file/d/1-J7v3NOfQxngx50U66dELoa5P17m2xDP/view?usp=drive_open<br><br>
 <strong>Info</strong><br>admin000 - Password = &lt;hidden&gt;<br>wrightri000 - Password = |current-password|<br>faneiart000 - Password = 54512`
+
       },
       "wrightri000": {
         password: "turtlesarebetter",
@@ -109,6 +110,7 @@
 <strong>Other Websites</strong><br>definitelynotblocked.vercel.app/games/index.html<br><br>
 <strong>Videos</strong><br>https://drive.google.com/drive/folders/1PzKaoaK4blzlaoxnwC20gZoeYE5mDxWL?usp=drive_link, drive.google.com/file/d/1-J7v3NOfQxngx50U66dELoa5P17m2xDP/view?usp=drive_open<br><br>
 <strong>Info</strong><br>wrightri000 - Password = |current-password|`
+
       },
       "faneiart000": {
         password: "54512",
@@ -123,8 +125,30 @@
 <strong>Edit Access</strong><br>github.com/orson-sander?tab=repositories<br><br>
 <strong>Videos</strong><br>https://drive.google.com/drive/folders/1PzKaoaK4blzlaoxnwC20gZoeYE5mDxWL?usp=drive_link, drive.google.com/file/d/1-J7v3NOfQxngx50U66dELoa5P17m2xDP/view?usp=drive_open<br><br>
 <strong>Info</strong><br>faneiart000 - Password = 54512`
+
       },
       "": {
         password: "",
-        message: `
-<strong>Access request</strong><br>Sorry Access Denied
+        message: `<strong>Access request</strong><br>Sorry Access Denied`
+      }
+    };
+
+    function login() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+
+      const user = users[username];
+
+      if (user && user.password === password) {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("messagePanel").style.display = "block";
+        document.getElementById("messageContent").innerHTML = user.message;
+      } else {
+        document.getElementById("output").textContent = "Invalid username or password.";
+      }
+    }
+  </script>
+</body>
+</html>
+
+
