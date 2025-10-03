@@ -1,78 +1,128 @@
-const users = {
-  "admin000": {
-    password: "Never eat soggy waffles46583!",
-    message: `Links:
-Pizza - backgroundsync.fpr.net/#
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Portal Login</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #1e1e2f;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
 
-Eaglercraft - sites.google.com/view/tbmjceaglercraftlauncherv1-0-2/links
+    .login-box {
+      background-color: #2c2c3c;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #000;
+      width: 300px;
+      transition: all 0.3s ease;
+    }
 
-Single Game Websites - synthx.cc/, dotlyhiyou.github.io/Games/GRANNY/index.html, trinculo54.github.io/Boxel-rebound-hope/Older/
+    .login-box h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #00ffff;
+    }
 
-Ai - grok.com/, notegpt.io/youtube-video-summarizer, math-gpt.org/, copilot.microsoft.com/
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+    }
 
-My Other Websites - orson-sander.github.io/orson-burnin-rubber-5-xs/, orson-sander.github.io/orsons.eaglercraft-1.8.8/, orson-sander.github.io/orsons-super-fowlst/, orson-sander.github.io/orsons-gladihopper/, orson-sander.github.io/orsons-shell-shockers/
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #00ffff;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-Link Hubs - docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/edit?tab=t.0, github.com/orson-sander/ByePassHub
+    .message-panel {
+      display: none;
+      width: 80%;
+      max-width: 800px;
+      background-color: #2c2c3c;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #000;
+      text-align: left;
+      color: #00ff99;
+    }
 
-Other Websites - definitelynotblocked.vercel.app/games/index.html
+    .message-panel h3 {
+      margin-top: 0;
+      color: #00ffff;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box" id="loginBox">
+    <h2>Admin Portal</h2>
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+    <div id="output" style="margin-top:10px; color:#ff4444;"></div>
+  </div>
 
-Edit Access - sites.google.com/d/1W9BNHAp5MP7HQ26ZVjZyEa20MZ5Hb4ok/p/19UUI9K75ELYXrBMUGk6QFMBSr2PmGjuy/edit, github.com/orson-sander?tab=repositories
+  <div class="message-panel" id="messagePanel">
+    <h3>Welcome</h3>
+    <p id="messageContent"></p>
+  </div>
 
-Videos - https://drive.google.com/drive/folders/1PzKaoaK4blzlaoxnwC20gZoeYE5mDxWL?usp=drive_link, drive.google.com/file/d/1-J7v3NOfQxngx50U66dELoa5P17m2xDP/view?usp=drive_open
-
-Info:
-admin000 - Password = <hidden>
-wrightri000 - Password = |current-password|
-faneiart000 - Password = 54512`
-  },
-  "wrightri000": {
-    password: "turtlesarebetter",
-    message: `Links:
-Pizza - backgroundsync.fpr.net/#
-
-Eaglercraft - sites.google.com/view/tbmjceaglercraftlauncherv1-0-2/links
-
-Single Game Websites - synthx.cc/, dotlyhiyou.github.io/Games/GRANNY/index.html, trinculo54.github.io/Boxel-rebound-hope/Older/
-
-Ai - grok.com/, notegpt.io/youtube-video-summarizer, math-gpt.org/, copilot.microsoft.com/
-
-Link Hubs - docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/edit?tab=t.0, github.com/orson-sander/ByePassHub
-
-Other Websites - definitelynotblocked.vercel.app/games/index.html
-
-Videos - https://drive.google.com/drive/folders/1PzKaoaK4blzlaoxnwC20gZoeYE5mDxWL?usp=drive_link, drive.google.com/file/d/1-J7v3NOfQxngx50U66dELoa5P17m2xDP/view?usp=drive_open
-
-Info:
-wrightri000 - Password = |current-password|`
-  },
-  "faneiart000": {
-    password: "54512",
-    message: `Links:
-Pizza - backgroundsync.fpr.net/#
-
-Eaglercraft - sites.google.com/view/tbmjceaglercraftlauncherv1-0-2/links
-
-Single Game Websites - synthx.cc/, dotlyhiyou.github.io/Games/GRANNY/index.html, trinculo54.github.io/Boxel-rebound-hope/Older/
-
-Ai - grok.com/, notegpt.io/youtube-video-summarizer, math-gpt.org/, copilot.microsoft.com/
-
-My Other Websites - orson-sander.github.io/orson-burnin-rubber-5-xs/, orson-sander.github.io/orsons.eaglercraft-1.8.8/, orson-sander.github.io/orsons-super-fowlst/, orson-sander.github.io/orsons-gladihopper/, orson-sander.github.io/orsons-shell-shockers/
-
-Link Hubs - docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/edit?tab=t.0, github.com/orson-sander/ByePassHub
-
-Other Websites - definitelynotblocked.vercel.app/games/index.html
-
-Edit Access - github.com/orson-sander?tab=repositories
-
-Videos - https://drive.google.com/drive/folders/1PzKaoaK4blzlaoxnwC20gZoeYE5mDxWL?usp=drive_link, drive.google.com/file/d/1-J7v3NOfQxngx50U66dELoa5P17m2xDP/view?usp=drive_open
-
-Info:
-faneiart000 - Password = 54512`
-  },
-  "viewer2": { password: "view2", message: "Welcome" },
-  "viewer3": { password: "view3", message: "Welcome" },
-  "viewer4": { password: "view4", message: "Welcome" },
-  "viewer5": { password: "view5", message: "Welcome" },
-  "viewer6": { password: "view6", message: "Welcome" },
-  "viewer7": { password: "view7", message: "Welcome" }
-};
+  <script>
+    const users = {
+      "admin000": {
+        password: "Never eat soggy waffles46583!",
+        message: `
+<strong>Pizza</strong><br>backgroundsync.fpr.net/#<br><br>
+<strong>Eaglercraft</strong><br>sites.google.com/view/tbmjceaglercraftlauncherv1-0-2/links<br><br>
+<strong>Single Game Websites</strong><br>synthx.cc/, dotlyhiyou.github.io/Games/GRANNY/index.html, trinculo54.github.io/Boxel-rebound-hope/Older/<br><br>
+<strong>Ai</strong><br>grok.com/, notegpt.io/youtube-video-summarizer, math-gpt.org/, copilot.microsoft.com/<br><br>
+<strong>My Other Websites</strong><br>orson-sander.github.io/orson-burnin-rubber-5-xs/, orson-sander.github.io/orsons.eaglercraft-1.8.8/, orson-sander.github.io/orsons-super-fowlst/, orson-sander.github.io/orsons-gladihopper/, orson-sander.github.io/orsons-shell-shockers/<br><br>
+<strong>Link Hubs</strong><br>docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/edit?tab=t.0, github.com/orson-sander/ByePassHub<br><br>
+<strong>Other Websites</strong><br>definitelynotblocked.vercel.app/games/index.html<br><br>
+<strong>Edit Access</strong><br>sites.google.com/d/1W9BNHAp5MP7HQ26ZVjZyEa20MZ5Hb4ok/p/19UUI9K75ELYXrBMUGk6QFMBSr2PmGjuy/edit, github.com/orson-sander?tab=repositories<br><br>
+<strong>Videos</strong><br>https://drive.google.com/drive/folders/1PzKaoaK4blzlaoxnwC20gZoeYE5mDxWL?usp=drive_link, drive.google.com/file/d/1-J7v3NOfQxngx50U66dELoa5P17m2xDP/view?usp=drive_open<br><br>
+<strong>Info</strong><br>admin000 - Password = &lt;hidden&gt;<br>wrightri000 - Password = |current-password|<br>faneiart000 - Password = 54512`
+      },
+      "wrightri000": {
+        password: "turtlesarebetter",
+        message: `
+<strong>Pizza</strong><br>backgroundsync.fpr.net/#<br><br>
+<strong>Eaglercraft</strong><br>sites.google.com/view/tbmjceaglercraftlauncherv1-0-2/links<br><br>
+<strong>Single Game Websites</strong><br>synthx.cc/, dotlyhiyou.github.io/Games/GRANNY/index.html, trinculo54.github.io/Boxel-rebound-hope/Older/<br><br>
+<strong>Ai</strong><br>grok.com/, notegpt.io/youtube-video-summarizer, math-gpt.org/, copilot.microsoft.com/<br><br>
+<strong>Link Hubs</strong><br>docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/edit?tab=t.0, github.com/orson-sander/ByePassHub<br><br>
+<strong>Other Websites</strong><br>definitelynotblocked.vercel.app/games/index.html<br><br>
+<strong>Videos</strong><br>https://drive.google.com/drive/folders/1PzKaoaK4blzlaoxnwC20gZoeYE5mDxWL?usp=drive_link, drive.google.com/file/d/1-J7v3NOfQxngx50U66dELoa5P17m2xDP/view?usp=drive_open<br><br>
+<strong>Info</strong><br>wrightri000 - Password = |current-password|`
+      },
+      "faneiart000": {
+        password: "54512",
+        message: `
+<strong>Pizza</strong><br>backgroundsync.fpr.net/#<br><br>
+<strong>Eaglercraft</strong><br>sites.google.com/view/tbmjceaglercraftlauncherv1-0-2/links<br><br>
+<strong>Single Game Websites</strong><br>synthx.cc/, dotlyhiyou.github.io/Games/GRANNY/index.html, trinculo54.github.io/Boxel-rebound-hope/Older/<br><br>
+<strong>Ai</strong><br>grok.com/, notegpt.io/youtube-video-summarizer, math-gpt.org/, copilot.microsoft.com/<br><br>
+<strong>My Other Websites</strong><br>orson-sander.github.io/orson-burnin-rubber-5-xs/, orson-sander.github.io/orsons.eaglercraft-1.8.8/, orson-sander.github.io/orsons-super-fowlst/, orson-sander.github.io/orsons-gladihopper/, orson-sander.github.io/orsons-shell-shockers/<br><br>
+<strong>Link Hubs</strong><br>docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/edit?tab=t.0, github.com/orson-sander/ByePassHub<br><br>
+<strong>Other Websites</strong><br>definitelynotblocked.vercel.app/games/index.html<br><br>
+<strong>Edit Access</strong><br>github.com/orson-sander?tab=repositories<br><br>
+<strong>Videos</strong><br>https://drive.google.com/drive/folders/1PzKaoaK4blzlaoxnwC20gZoeYE5mDxWL?usp=drive_link, drive.google.com/file/d/1-J7v3NOfQxngx50U66dELoa5P17m2xDP/view?usp=drive_open<br><br>
+<strong>Info</strong><br>faneiart000 - Password = 54512`
+      },
+      "": { password: "", message: `
+<strong>Pizza</strong><br>Sorry, Access Denied
